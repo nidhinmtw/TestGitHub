@@ -1,4 +1,4 @@
 TestGitHub
 ==========
 
-This only my Test Repo. Just trying out GitHub for the first time.
+This is my first GitHub repo. And this Readme.md is my first edit on the Git.
