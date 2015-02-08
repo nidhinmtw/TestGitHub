@@ -1,4 +1,4 @@
-// Lesson 14
+// Lesson 16
 // --------
 // Lets try to give some content out to be drawn to the page when the start function is called and this function should serve data to the upload function.
 // As for this lesson we will create a textarea and take its bigggggg content entered by the user to process further.
