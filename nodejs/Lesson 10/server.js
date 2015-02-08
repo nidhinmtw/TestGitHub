@@ -1,4 +1,4 @@
-// Lesson 12
+// Lesson 10
 // --------
 var http = require('http');
 var url = require('url');
@@ -15,7 +15,10 @@ function start(route, handle)
 		{
 			console.log('Got a request for '+pathName);
 		}
-		route(handle, pathName, response);
+		response.writeHead(200, {'Content-Type': 'text/plain'});
+		var content = route(handle, pathName);
+		response.write(content+'.. Lesson 10!');
+		response.end();
 	}
 	var server = http.createServer(onRequest);
 	server.listen(8000);

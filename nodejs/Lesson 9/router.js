@@ -1,9 +1,9 @@
-// Lesson 12
+// Lesson 9
 // --------
 // Create the router to handle the individual requests.
 // It is not the job of the web server module to handle each and every requests independtly.
 // Start taking the handle map for requesthandling
-function route(handle, pathname, response)
+function route(handle, pathname)
 {
 	// Avoiding unnecessary consoles for the default requests for favicon.ico. This is not part of the lesson or intentional.
 	// Just for convenience of the terminal message.
@@ -13,7 +13,7 @@ function route(handle, pathname, response)
 	}
 	if(typeof handle[pathname] === 'function')
 	{
-		handle[pathname](response);//invoke the handler function as per the path name parsed
+		return handle[pathname]();//invoke the handler function as per the path name parsed
 	}
 	else
 	{
@@ -22,11 +22,8 @@ function route(handle, pathname, response)
 		if(pathname !== '/favicon.ico')
 		{
 			console.log("No request handler found for "+pathname);
-		
 		}
-		response.writeHead(404, {'Content-Type':'text/plain'})
-		response.write('404 Not found');
-		response.end();
+		return '404 Not found';
 
 	}
 }

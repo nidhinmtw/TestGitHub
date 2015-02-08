@@ -1,4 +1,4 @@
-// Lesson 12
+// Lesson 10
 // --------
 var server = require('./server');
 var router = require('./router');

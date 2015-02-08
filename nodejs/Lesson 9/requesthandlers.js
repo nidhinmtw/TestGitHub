@@ -1,4 +1,4 @@
-// Lesson 12
+// Lesson 9
 // --------
 // This is the file that will handle each of the request from the server that came via the router module.
 // We are going to have two functions this time 
@@ -9,25 +9,24 @@
 // We will start with plain implementations this time.
 
 
-// Get the nodejs module child_process and get the exec operation from it.
-// This allows us to execute a shell command. As below, we execute the command find / which is gonna be way to expensive comapared to the ls -lah call
-var exec = require('child_process').exec;
+// This Lesson says a way which is not advisable to return the content (the application logic exection in sync and send the result synchronosuly ) causing the heavy operation to stall the server.
+// To show that this is not a good idea to return the result like this
 
-function start(response)
+function start()
 {
 	console.log("Request handler start was called.");
-	exec('find /',{timeout:10000, maxBuffer: 20000*1024}, function(error, stdout, stderr){
-		response.writeHead(200, {'Content-Type':'text/plain'})
-		response.write(stdout);
-		response.end();
-	});
+	function sleep(milliseconds)
+	{
+		var startTime = new Date().getTime();
+		while(new Date().getTime() < startTime + milliseconds);
+	}
+	sleep(10000); // consume the execution engine for 10 secs(do some heavy operation)
+	return "Hello Start.";// Retrun the request handler response to the server.
 }
-function upload(response)
+function upload()
 {
 	console.log("Request handler upload was called.");
-	response.writeHead(200, {'Content-Type':'text/plain'})
-	response.write('Hello upload... Lesson 12' );
-	response.end();
+	return "Hello Uplaod.";// Retrun the request handler response to the server.
 }
 
 exports.start = start;

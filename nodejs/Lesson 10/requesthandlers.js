@@ -1,4 +1,4 @@
-// Lesson 12
+// Lesson 10
 // --------
 // This is the file that will handle each of the request from the server that came via the router module.
 // We are going to have two functions this time 
@@ -10,24 +10,22 @@
 
 
 // Get the nodejs module child_process and get the exec operation from it.
-// This allows us to execute a shell command. As below, we execute the command find / which is gonna be way to expensive comapared to the ls -lah call
+// This allows us to execute a NodeJS shell command. As below, we execute the command ls -lah to list all the files in the current directory.
 var exec = require('child_process').exec;
 
-function start(response)
+function start()
 {
 	console.log("Request handler start was called.");
-	exec('find /',{timeout:10000, maxBuffer: 20000*1024}, function(error, stdout, stderr){
-		response.writeHead(200, {'Content-Type':'text/plain'})
-		response.write(stdout);
-		response.end();
+	var content = 'Folder empty';
+	exec('ls -lah', function(error, stdout, stderr){
+		content = stdout;
 	});
+	return content;
 }
-function upload(response)
+function upload()
 {
 	console.log("Request handler upload was called.");
-	response.writeHead(200, {'Content-Type':'text/plain'})
-	response.write('Hello upload... Lesson 12' );
-	response.end();
+	return "Hello Uplaod.";// Retrun the request handler response to the server.
 }
 
 exports.start = start;
