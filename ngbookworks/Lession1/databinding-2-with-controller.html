@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app>
+<!--
+Just as ng-app declares that all elements inside of the DOM element upon which it is declared belong
+to the Angular app, declaring the ng-controller attribute on a DOM element says that all of the
+elements inside of it belong to the controller
+-->
+<head>
+<title>Simple app</title>
+<script src="../lib/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller='MyController'>
+<input ng-model="name" type="text" placeholder="Your name">
+<h1>Hello {{ name }}</h1>
+</div>
+</body>
+</html>
